@@ -15,14 +15,14 @@ pub mod uni {
 
 const SYNTH_ENGINE_TASK_NAME: &[u8; 17] = b"DemoSynth Engine\0";
 
-pub static ENGINE_VTABLE: uni::mrcp_engine_method_vtable_t = uni::mrcp_engine_method_vtable_t {
+static ENGINE_VTABLE: uni::mrcp_engine_method_vtable_t = uni::mrcp_engine_method_vtable_t {
     destroy: Some(engine_destroy),
     open: Some(engine_open),
     close: Some(engine_close),
     create_channel: Some(engine_create_channel),
 };
 
-pub const CHANNEL_VTABLE: uni::mrcp_engine_channel_method_vtable_t =
+static CHANNEL_VTABLE: uni::mrcp_engine_channel_method_vtable_t =
     uni::mrcp_engine_channel_method_vtable_t {
         destroy: Some(channel_destroy),
         open: Some(channel_open),
@@ -30,7 +30,7 @@ pub const CHANNEL_VTABLE: uni::mrcp_engine_channel_method_vtable_t =
         process_request: Some(channel_process_request),
     };
 
-pub static STREAM_VTABLE: uni::mpf_audio_stream_vtable_t = uni::mpf_audio_stream_vtable_t {
+static STREAM_VTABLE: uni::mpf_audio_stream_vtable_t = uni::mpf_audio_stream_vtable_t {
     destroy: Some(stream_destroy),
     open_rx: Some(stream_open),
     close_rx: Some(stream_close),
